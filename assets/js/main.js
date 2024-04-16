@@ -207,7 +207,7 @@ api.get()
       const videoContainer = document.querySelector('.video-content-left');
       videoContainer.innerHTML = `
         <div class="col-md-12 col-12">
-          <img src="/assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+          <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
           <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
         </div>
       `;
