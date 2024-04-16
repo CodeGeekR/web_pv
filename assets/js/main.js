@@ -198,10 +198,14 @@ api.get()
       // Reemplaza el video actual con la transmisión en vivo
       const videoContainer = document.querySelector('.video-content-left');
       videoContainer.innerHTML = `
-        <div class="col-md-12 col-12">
-          <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      `;
+  <div class="col-md-12 col-12">
+    <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>En Vivo</span>
+    </div>
+  </div>
+`;
     } else {
       // No hay una transmisión en vivo, muestra el video actual
       const videoContainer = document.querySelector('.video-content-left');
