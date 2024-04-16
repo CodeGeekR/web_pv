@@ -165,13 +165,15 @@ var typed = new Typed("#typed-text", options);
 
 
 //========= glightbox para ampliar Video Home =========
-GLightbox({
-  href: "https://www.youtube.com/watch?v=NXmm4YitT_A",
-  type: "video",
-  source: "youtube", //vimeo, youtube or local
-  width: 900,
-  autoplayVideos: true,
-});
+function iniciarGlightbox() {
+  GLightbox({
+    href: "https://www.youtube.com/watch?v=NXmm4YitT_A",
+    type: "video",
+    source: "youtube", //vimeo, youtube o local
+    width: 900,
+    autoplayVideos: true,
+  });
+}
 
 
 //========= Codigo para reproducir video EN VIVO usando API de Youtube  =========
@@ -211,10 +213,14 @@ api.get()
       const videoContainer = document.querySelector('.video-content-left');
       videoContainer.innerHTML = `
         <div class="col-md-12 col-12">
-          <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
-          <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+          <div class="video-content-left">
+            <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+            <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+          </div>
         </div>
       `;
+      // Inicializa GLightbox cuando no hay un video en vivo
+      iniciarGlightbox();
     }
   })
   .catch(error => {
