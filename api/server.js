@@ -54,52 +54,52 @@ const mg = mailgun.client({
 // Aplica una limitación de tasa de 100 solicitudes por hora a todas las rutas
 const limiter = rateLimit({
     windowMs: 60 * 60 * 1000, // 1 hora
-    max: 20 // limita cada IP a 20 solicitudes por ventana
+    max: 100 // limita cada IP a 20 solicitudes por ventana
 });
 app.use(limiter);
 
 
 // Creamos una ruta para obtener los datos de la transmisión en vivo de YouTube
-app.get('/youtube', async (req, res) => {
-    try {
-        // Hacemos la solicitud a la API de YouTube
-        const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-            params: {
-                part: 'snippet',
-                channelId: 'UCuRnuWVbzk8snPqZAmuna4w',
-                eventType: 'live',
-                type: 'video',
-                key: process.env.YOUTUBE_API_KEY
-            }
-        });
+// app.get('/api/live', async (req, res) => {
+//     try {
+//         // Hacemos la solicitud a la API de YouTube
+//         const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+//             params: {
+//                 part: 'snippet',
+//                 channelId: 'UCuRnuWVbzk8snPqZAmuna4w',
+//                 eventType: 'live',
+//                 type: 'video',
+//                 key: process.env.YOUTUBE_API_KEY
+//             }
+//         });
 
-        // Verifica que response.data contiene los datos esperados
-        if (
-            response.data &&
-            response.data.items &&
-            response.data.items.length > 0 &&
-            response.data.items[0].id &&
-            response.data.items[0].id.videoId
-        ) {
-            // La respuesta tiene la estructura esperada
-            res.json(response.data);
-        } else {
-            // La respuesta no tiene la estructura esperada
-            console.error('Respuesta inesperada de la API de YouTube:', response.data);
-            throw new Error('Respuesta inesperada de la API de YouTube');
-        }
-    } catch (error) {
-        console.error('Error al obtener la transmisión en vivo:', error);
+//         // Verifica que response.data contiene los datos esperados
+//         if (
+//             response.data &&
+//             response.data.items &&
+//             response.data.items.length > 0 &&
+//             response.data.items[0].id &&
+//             response.data.items[0].id.videoId
+//         ) {
+//             // La respuesta tiene la estructura esperada
+//             res.json(response.data);
+//         } else {
+//             // La respuesta no tiene la estructura esperada
+//             console.error('Respuesta inesperada de la API de YouTube:', response.data);
+//             throw new Error('Respuesta inesperada de la API de YouTube');
+//         }
+//     } catch (error) {
+//         console.error('Error al obtener la transmisión en vivo:', error);
 
-        // Analizar el error y proporcionar información más específica
-        if (error.response) {
-            console.error('Error de la API de YouTube:', error.response.data);
-            res.status(error.response.status).json({ error: 'Error de la API de YouTube' });
-        } else {
-            res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
-        }
-    }
-});
+//         // Analizar el error y proporcionar información más específica
+//         if (error.response) {
+//             console.error('Error de la API de YouTube:', error.response.data);
+//             res.status(error.response.status).json({ error: 'Error de la API de YouTube' });
+//         } else {
+//             res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+//         }
+//     }
+// });
 
 
 // Definimos una ruta POST para enviar correos electrónicos
@@ -119,6 +119,35 @@ app.post('/api/send', (req, res, next) => {
             console.error(err); // Si hay un error, lo registramos
             next(err); // Pasamos el error al siguiente middleware
         });
+});
+
+// Definimos la ruta para obtener la información del directo de YouTube
+app.get('/api/live', async (req, res) => {
+    try {
+        // Definimos los parámetros públicos de la solicitud
+        const channelId = 'UCuRnuWVbzk8snPqZAmuna4w';
+        const part = 'snippet';
+        const eventType = 'live';
+        const type = 'video';
+
+        // Construimos la URL de la API de YouTube con los parámetros
+        const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=${part}&channelId=${channelId}&eventType=${eventType}&type=${type}&key=${process.env.YOUTUBE_API_KEY}`;
+
+        // Realizamos la solicitud a la API de YouTube usando Axios
+        const response = await axios.get(apiUrl);
+        const liveBroadcast = response.data.items[0];
+
+        // Verificamos si hay un directo activo
+        if (liveBroadcast) {
+            const liveVideoId = liveBroadcast.id.videoId;
+            res.json({ liveVideoId }); // Devolvemos el ID del video en vivo
+        } else {
+            res.json({ liveVideoId: null }); // Devolvemos null si no hay directo
+        }
+    } catch (error) {
+        console.error('Error al obtener la transmisión en vivo:', error);
+        res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+    }
 });
 
 // manejar las peticiones get

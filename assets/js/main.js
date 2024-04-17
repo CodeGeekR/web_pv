@@ -137,10 +137,12 @@
 
 var options = {
   strings: [
-    "Fé",
+    "Vida",
+    "Servidores",
     "Esperanza",
-    "Comunidad",
-    "Servicio",
+    "Unidos",
+    "Luz",
+    "Consuelo",
   ], // Frases a mostrar en secuencia
   typeSpeed: 230, // Velocidad de escritura en milisegundos
   backSpeed: 120, // Velocidad de borrado en milisegundos
@@ -180,7 +182,7 @@ function iniciarGlightbox() {
 // main.js
 
 // Haz la solicitud a nuestro servidor Express usando Axios
-axios.get('/youtube')
+axios.get('/api/live')
   .then(response => {
     const data = response.data;
     // Verifica si data.items existe y tiene al menos un elemento
