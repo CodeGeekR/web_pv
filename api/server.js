@@ -73,6 +73,11 @@ app.get('/youtube', async (req, res) => {
             }
         });
 
+        // Verifica que response.data contiene los datos esperados
+        if (!response.data || !response.data.items || !response.data.items.length) {
+            throw new Error('No se encontraron datos de la transmisión en vivo');
+        }
+
         // Enviamos los datos de la transmisión en vivo como respuesta
         res.json(response.data);
     } catch (error) {
