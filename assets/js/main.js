@@ -224,14 +224,35 @@ axios.get('/youtube')
 
 
 
-// Enviar los datos cuando el usuario oprima el botón con class sendMessage-btn
-document.querySelector('.sendMessage-btn').addEventListener('click', function (e) {
+// Enviar los datos cuando el usuario envíe el formulario
+document.getElementById('contact').addEventListener('submit', function (e) {
   e.preventDefault();
+
+  // Obtiene los campos del formulario
+  var name = document.querySelector('#name').value;
+  var surname = document.querySelector('#surname').value;
+  var email = document.querySelector('#email').value;
+  var message = document.querySelector('#message').value;
+
+  // Verifica que todos los campos estén llenos
+  if (!name || !surname || !email || !message) {
+    Swal.fire({
+      title: 'Error',
+      text: 'Todos los campos son obligatorios.',
+      icon: 'error',
+      customClass: {
+        confirmButton: 'btn-alert-contact'
+      }
+    });
+    return;
+  }
+
+  // Si todos los campos están llenos, procede con el envío del formulario
   axios.post('https://pv-samuraidevs-projects.vercel.app/api/send', {
-    name: document.querySelector('#name').value,
-    surname: document.querySelector('#surname').value,
-    email: document.querySelector('#email').value,
-    message: document.querySelector('#message').value
+    name: name,
+    surname: surname,
+    email: email,
+    message: message
   })
     .then(function (response) {
       Swal.fire({
@@ -255,7 +276,6 @@ document.querySelector('.sendMessage-btn').addEventListener('click', function (e
       })
     });
 });
-
 
 // // Inicializa axios con la URL de la API de YouTube y los parámetros de la solicitud
 // const api = axios.create({
