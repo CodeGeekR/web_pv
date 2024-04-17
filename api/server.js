@@ -14,7 +14,7 @@ const rateLimit = require('express-rate-limit'); // express-rate-limit nos permi
 const app = express();
 
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.com/', 'http://localhost:3000', 'http://localhost:5500', 'https://pv-samuraidevs-projects.vercel.app'];
+const whitelist = ['https://www.palabravivaiglesia.com/', 'https://pv-samuraidevs-projects.vercel.app'];
 
 // Opciones de CORS
 const options = {
