@@ -209,7 +209,7 @@ axios.get('/api/live')
         <div class="col-md-12 col-12">
           <div class="video-content-left">
             <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
-            <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+            <a href="https://youtu.be/tKyLOk2ro3g" class="glightbox video"><i class="bi bi-play"></i></a>
           </div>
         </div>`;
       // Inicializa GLightbox cuando no hay un video en vivo
