@@ -14,7 +14,7 @@ const rateLimit = require('express-rate-limit'); // express-rate-limit nos permi
 const app = express();
 
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.com/', 'https://pv-samuraidevs-projects.vercel.app'];
+const whitelist = ['https://www.palabravivaiglesia.com/', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
 
 // Opciones de CORS
 const options = {
@@ -28,8 +28,8 @@ const options = {
             callback(new Error('Not allowed by CORS'));
         }
     },
-    // Métodos HTTP permitidos
-    methods: "POST"
+    // Métodos HTTP permitidos POST y GET
+    methods: "POST, GET",
 };
 
 // Aplicamos las opciones de CORS a nuestra aplicación Express
