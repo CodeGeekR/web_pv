@@ -183,16 +183,14 @@ function iniciarGlightbox() {
 axios.get('/youtube')
   .then(response => {
     const data = response.data;
-
-    // Verifica si el arreglo 'items' existe y tiene al menos un elemento
-    if (Array.isArray(data.items) && data.items.length > 0) {
+    // Verifica si data.items existe y tiene al menos un elemento
+    if (data.items && data.items.length > 0) {
       const liveBroadcast = data.items[0];
-
+      // Verifica si liveBroadcast es un objeto válido
       if (liveBroadcast) {
-        // Hay una transmisión en vivo
         const liveVideoId = liveBroadcast.id.videoId;
-        // Reemplaza el video actual con la transmisión en vivo
         const videoContainer = document.querySelector('.video-content-left');
+        // Inserta el video en vivo en el contenedor
         videoContainer.innerHTML = `
           <div class="col-md-12 col-12">
             <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -200,24 +198,20 @@ axios.get('/youtube')
               <span class="live-dot"></span>
               <span>En Vivo</span>
             </div>
-          </div>
-        `;
-      } else {
-        // No hay una transmisión en vivo, muestra el video actual
-        const videoContainer = document.querySelector('.video-content-left');
-        videoContainer.innerHTML = `
-          <div class="col-md-12 col-12">
-            <div class="video-content-left">
-              <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
-              <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
-            </div>
-          </div>
-        `;
-        // Inicializa GLightbox cuando no hay un video en vivo
-        iniciarGlightbox();
+          </div>`;
       }
     } else {
-      console.warn("No hay datos válidos en la respuesta del servidor:", data);
+      // No hay datos válidos de transmisión en vivo, carga contenido alternativo
+      const videoContainer = document.querySelector('.video-content-left');
+      videoContainer.innerHTML = `
+        <div class="col-md-12 col-12">
+          <div class="video-content-left">
+            <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+            <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+          </div>
+        </div>`;
+      // Inicializa GLightbox cuando no hay un video en vivo
+      iniciarGlightbox();
     }
   })
   .catch(error => {
@@ -228,6 +222,7 @@ axios.get('/youtube')
       console.error('La respuesta del servidor no fue válida:', error.response.data);
     }
   });
+
 
 
 
