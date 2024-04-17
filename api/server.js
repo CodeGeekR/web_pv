@@ -90,7 +90,7 @@ app.post('/api/send', (req, res, next) => {
         from: process.env.MAILGUN_FROM,
         to: process.env.MAILGUN_TO,
         subject: req.sanitize(req.body.subject),
-        text: `Mensaje de: ${req.sanitize(req.body.name)} (${req.sanitize(req.body.email)})\n\n${req.sanitize(req.body.message)}`
+        text: `Mensaje de: ${req.sanitize(req.body.name)} ${req.sanitize(req.body.lastname)} (${req.sanitize(req.body.email)})\n\n${req.sanitize(req.body.message)}`
     };
 
     // Intentamos enviar el correo electrónico

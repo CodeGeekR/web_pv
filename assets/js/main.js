@@ -183,34 +183,41 @@ function iniciarGlightbox() {
 axios.get('/youtube')
   .then(response => {
     const data = response.data;
-    const liveBroadcast = data.items[0];
-    if (liveBroadcast) {
-      // Hay una transmisión en vivo
-      const liveVideoId = liveBroadcast.id.videoId;
-      // Reemplaza el video actual con la transmisión en vivo
-      const videoContainer = document.querySelector('.video-content-left');
-      videoContainer.innerHTML = `
-  <div class="col-md-12 col-12">
-    <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <div class="live-indicator">
-      <span class="live-dot"></span>
-      <span>En Vivo</span>
-    </div>
-  </div>
-`;
-    } else {
-      // No hay una transmisión en vivo, muestra el video actual
-      const videoContainer = document.querySelector('.video-content-left');
-      videoContainer.innerHTML = `
-        <div class="col-md-12 col-12">
-          <div class="video-content-left">
-            <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
-            <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+
+    // Verifica si el arreglo 'items' existe y tiene al menos un elemento
+    if (Array.isArray(data.items) && data.items.length > 0) {
+      const liveBroadcast = data.items[0];
+
+      if (liveBroadcast) {
+        // Hay una transmisión en vivo
+        const liveVideoId = liveBroadcast.id.videoId;
+        // Reemplaza el video actual con la transmisión en vivo
+        const videoContainer = document.querySelector('.video-content-left');
+        videoContainer.innerHTML = `
+          <div class="col-md-12 col-12">
+            <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="live-indicator">
+              <span class="live-dot"></span>
+              <span>En Vivo</span>
+            </div>
           </div>
-        </div>
-      `;
-      // Inicializa GLightbox cuando no hay un video en vivo
-      iniciarGlightbox();
+        `;
+      } else {
+        // No hay una transmisión en vivo, muestra el video actual
+        const videoContainer = document.querySelector('.video-content-left');
+        videoContainer.innerHTML = `
+          <div class="col-md-12 col-12">
+            <div class="video-content-left">
+              <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+              <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+            </div>
+          </div>
+        `;
+        // Inicializa GLightbox cuando no hay un video en vivo
+        iniciarGlightbox();
+      }
+    } else {
+      console.warn("No hay datos válidos en la respuesta del servidor:", data);
     }
   })
   .catch(error => {
@@ -224,18 +231,19 @@ axios.get('/youtube')
 
 
 
+
 // Enviar los datos cuando el usuario envíe el formulario
 document.getElementById('contact').addEventListener('submit', function (e) {
   e.preventDefault();
 
   // Obtiene los campos del formulario
   var name = document.querySelector('#name').value;
-  var surname = document.querySelector('#surname').value;
+  var lastname = document.querySelector('#lastname').value;
   var email = document.querySelector('#email').value;
   var message = document.querySelector('#message').value;
 
   // Verifica que todos los campos estén llenos
-  if (!name || !surname || !email || !message) {
+  if (!name || !lastname || !email || !message) {
     Swal.fire({
       title: 'Error',
       text: 'Todos los campos son obligatorios.',
@@ -250,9 +258,10 @@ document.getElementById('contact').addEventListener('submit', function (e) {
   // Si todos los campos están llenos, procede con el envío del formulario
   axios.post('https://pv-samuraidevs-projects.vercel.app/api/send', {
     name: name,
-    surname: surname,
+    lastname: lastname,
     email: email,
-    message: message
+    message: message,
+    subject: 'Mensaje de la Web PV'
   })
     .then(function (response) {
       Swal.fire({

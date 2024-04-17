@@ -1859,6 +1859,6 @@ responsive
 
 /* Modifica el color del Boton de alerta para el Modal de la Section Contacto */
 .btn-alert-contact {
-  background-color: #22C9BE !important;
-  color: #C13584 !important;
+  background-color: #3b5998 !important;
+  color: white !important;
 }
