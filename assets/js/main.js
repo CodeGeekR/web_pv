@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 (function ($) {
 
   "use strict";
@@ -177,23 +179,13 @@ function iniciarGlightbox() {
 
 
 //========= Codigo para reproducir video EN VIVO usando API de Youtube  =========
+// main.js
 
-// Inicializa axios con la URL de la API de YouTube y los parámetros de la solicitud
-const api = axios.create({
-  baseURL: 'https://www.googleapis.com/youtube/v3/search',
-  params: {
-    part: 'snippet',
-    channelId: 'UCuRnuWVbzk8snPqZAmuna4w',
-    eventType: 'live',
-    type: 'video',
-    key: 'AIzaSyDM9KRfevqrHYyzLUUSXwKG9zppkm_AVIY'
-  }
-});
-
-// Haz la solicitud a la API de YouTube
-api.get()
-  .then(response => {
-    const liveBroadcast = response.data.items[0];
+// Haz la solicitud a nuestro servidor Express
+fetch('/youtube')
+  .then(response => response.json())
+  .then(data => {
+    const liveBroadcast = data.items[0];
     if (liveBroadcast) {
       // Hay una transmisión en vivo
       const liveVideoId = liveBroadcast.id.videoId;
@@ -225,5 +217,57 @@ api.get()
   })
   .catch(error => {
     // Maneja cualquier error que ocurra durante la solicitud
-    console.error('Error al obtener la transmisión en vivo:', error);
+    console.error('Error:', error);
   });
+
+
+
+// // Inicializa axios con la URL de la API de YouTube y los parámetros de la solicitud
+// const api = axios.create({
+//   baseURL: 'https://www.googleapis.com/youtube/v3/search',
+//   params: {
+//     part: 'snippet',
+//     channelId: 'UCuRnuWVbzk8snPqZAmuna4w',
+//     eventType: 'live',
+//     type: 'video',
+//     key: process.env.YOUTUBE_API_KEY
+//   }
+// });
+
+// // Haz la solicitud a la API de YouTube
+// api.get()
+//   .then(response => {
+//     const liveBroadcast = response.data.items[0];
+//     if (liveBroadcast) {
+//       // Hay una transmisión en vivo
+//       const liveVideoId = liveBroadcast.id.videoId;
+//       // Reemplaza el video actual con la transmisión en vivo
+//       const videoContainer = document.querySelector('.video-content-left');
+//       videoContainer.innerHTML = `
+//   <div class="col-md-12 col-12">
+//     <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+//     <div class="live-indicator">
+//       <span class="live-dot"></span>
+//       <span>En Vivo</span>
+//     </div>
+//   </div>
+// `;
+//     } else {
+//       // No hay una transmisión en vivo, muestra el video actual
+//       const videoContainer = document.querySelector('.video-content-left');
+//       videoContainer.innerHTML = `
+//         <div class="col-md-12 col-12">
+//           <div class="video-content-left">
+//             <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+//             <a href="https://www.youtube.com/watch?v=NXmm4YitT_A" class="glightbox video"><i class="bi bi-play"></i></a>
+//           </div>
+//         </div>
+//       `;
+//       // Inicializa GLightbox cuando no hay un video en vivo
+//       iniciarGlightbox();
+//     }
+//   })
+//   .catch(error => {
+//     // Maneja cualquier error que ocurra durante la solicitud
+//     console.error('Error al obtener la transmisión en vivo:', error);
+//   });
