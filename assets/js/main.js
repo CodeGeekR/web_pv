@@ -179,10 +179,10 @@ function iniciarGlightbox() {
 //========= Codigo para reproducir video EN VIVO usando API de Youtube  =========
 // main.js
 
-// Haz la solicitud a nuestro servidor Express
-fetch('/youtube')
-  .then(response => response.json())
-  .then(data => {
+// Haz la solicitud a nuestro servidor Express usando Axios
+axios.get('/youtube')
+  .then(response => {
+    const data = response.data;
     const liveBroadcast = data.items[0];
     if (liveBroadcast) {
       // Hay una transmisión en vivo
@@ -216,6 +216,10 @@ fetch('/youtube')
   .catch(error => {
     // Maneja cualquier error que ocurra durante la solicitud
     console.error('Error:', error);
+    // Si el error es debido a una respuesta no válida, muestra un mensaje adicional
+    if (error.response) {
+      console.error('La respuesta del servidor no fue válida:', error.response.data);
+    }
   });
 
 
