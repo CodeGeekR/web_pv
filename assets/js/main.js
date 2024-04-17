@@ -169,7 +169,7 @@ var typed = new Typed("#typed-text", options);
 //========= glightbox para ampliar Video Home =========
 function iniciarGlightbox() {
   GLightbox({
-    href: "https://www.youtube.com/watch?v=NXmm4YitT_A",
+    href: "https://youtu.be/tKyLOk2ro3g",
     type: "video",
     source: "youtube", //vimeo, youtube o local
     width: 900,
