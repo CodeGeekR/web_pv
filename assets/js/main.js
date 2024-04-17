@@ -224,6 +224,39 @@ axios.get('/youtube')
 
 
 
+// Enviar los datos cuando el usuario oprima el botón con class sendMessage-btn
+document.querySelector('.sendMessage-btn').addEventListener('click', function (e) {
+  e.preventDefault();
+  axios.post('https://pv-samuraidevs-projects.vercel.app/api/send', {
+    name: document.querySelector('#name').value,
+    surname: document.querySelector('#surname').value,
+    email: document.querySelector('#email').value,
+    message: document.querySelector('#message').value
+  })
+    .then(function (response) {
+      Swal.fire({
+        title: '¡Enviado!',
+        text: 'Tu mensaje fue enviado con éxito.',
+        icon: 'success',
+        iconColor: '#22C9BE',
+        customClass: {
+          confirmButton: 'btn-alert-contact'
+        }
+      })
+    })
+    .catch(function (error) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un error al enviar tu mensaje.',
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn-alert-contact'
+        }
+      })
+    });
+});
+
+
 // // Inicializa axios con la URL de la API de YouTube y los parámetros de la solicitud
 // const api = axios.create({
 //   baseURL: 'https://www.googleapis.com/youtube/v3/search',
