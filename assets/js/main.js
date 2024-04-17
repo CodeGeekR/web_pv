@@ -193,7 +193,7 @@ axios.get('/youtube')
         // Inserta el video en vivo en el contenedor
         videoContainer.innerHTML = `
           <div class="col-md-12 col-12">
-            <iframe class="rounded-video" width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="rounded-video" width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts; allow-same-origin" allowfullscreen></iframe>
             <div class="live-indicator">
               <span class="live-dot"></span>
               <span>En Vivo</span>
@@ -217,6 +217,13 @@ axios.get('/youtube')
   .catch(error => {
     // Maneja cualquier error que ocurra durante la solicitud
     console.error('Error:', error);
+
+    // Manejo específico para el error 'web-share'
+    if (error.message.includes('web-share')) {
+      console.warn('La función "web-share" no es compatible o no está disponible.');
+      // Implementar alternativa para compartir o mostrar un mensaje al usuario
+    }
+
     // Si el error es debido a una respuesta no válida, muestra un mensaje adicional
     if (error.response) {
       console.error('La respuesta del servidor no fue válida:', error.response.data);
