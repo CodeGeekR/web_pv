@@ -74,16 +74,30 @@ app.get('/youtube', async (req, res) => {
         });
 
         // Verifica que response.data contiene los datos esperados
-        if (!response.data || !response.data.items || !response.data.items.length) {
-            throw new Error('No se encontraron datos de la transmisión en vivo');
+        if (
+            response.data &&
+            response.data.items &&
+            response.data.items.length > 0 &&
+            response.data.items[0].id &&
+            response.data.items[0].id.videoId
+        ) {
+            // La respuesta tiene la estructura esperada
+            res.json(response.data);
+        } else {
+            // La respuesta no tiene la estructura esperada
+            console.error('Respuesta inesperada de la API de YouTube:', response.data);
+            throw new Error('Respuesta inesperada de la API de YouTube');
         }
-
-        // Enviamos los datos de la transmisión en vivo como respuesta
-        res.json(response.data);
     } catch (error) {
-        // Si algo sale mal, enviamos un mensaje de error
         console.error('Error al obtener la transmisión en vivo:', error);
-        res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+
+        // Analizar el error y proporcionar información más específica
+        if (error.response) {
+            console.error('Error de la API de YouTube:', error.response.data);
+            res.status(error.response.status).json({ error: 'Error de la API de YouTube' });
+        } else {
+            res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+        }
     }
 });
 
