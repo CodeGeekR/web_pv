@@ -920,6 +920,10 @@ Banner Style
   margin-bottom: 15px;
 }
 
+.main-banner .left-content p {
+  font-size: 40px;
+}
+
 .main-banner .left-content h2 {
   font-size: 33px;
   font-weight: 700;
@@ -1100,6 +1104,11 @@ Banner Style
     margin-top: 30px;
   }
 }
+
+.rounded-video {
+  border-radius: 10px;
+}
+
 /* end of video play button */
 
 
@@ -1169,8 +1178,10 @@ About Us Style
   margin-right: 25px;
 }
 
-.about-us .services .item .icon img {
-  max-width: 70px;
+.about-us .services .item .icon i {
+  /* cambiar tamaño de los iconos de bootstrap*/
+  font-size: 50px;
+  color: #e7e7e7;
 }
 
 .about-us .services .item h4 {
@@ -1359,7 +1370,7 @@ Portfolio
 }
 
 .our-portfolio .showed-content img {
-  max-width: 100px;
+  max-width: max-content;
 }
 
 
@@ -1807,6 +1818,12 @@ responsive
   justify-content: center;
   align-items: center;
   margin-top: 100px; /* Añadido para dar un margen superior */
+}
+
+@media (min-width: 990px) {
+ .social-links {
+  margin-right: 50px;
+  }
 }
 
 .social-btn {

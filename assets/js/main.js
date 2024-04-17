@@ -193,7 +193,7 @@ axios.get('/youtube')
         // Inserta el video en vivo en el contenedor
         videoContainer.innerHTML = `
           <div class="col-md-12 col-12">
-            <iframe width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="rounded-video" width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="live-indicator">
               <span class="live-dot"></span>
               <span>En Vivo</span>
