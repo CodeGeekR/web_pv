@@ -341,22 +341,40 @@ document.getElementById('contact').addEventListener('submit', function (e) {
 //   });
 
 // Detectar si el usuario está en un dispositivo móvil
-var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// Obtener todos los enlaces de las redes sociales
-var socialLinks = document.querySelectorAll('.social-links a');
+// Definir las URL de las redes sociales
+const facebookUrl = "https://www.facebook.com/Palabra.Viva.Iglesia/";
+const instagramUrl = "https://www.instagram.com/iglesia.palabraviva/";
+const youtubeUrl = "https://www.youtube.com/@IglesiaCristianaPalabraViva";
 
-// Iterar sobre cada enlace
-for (var i = 0; i < socialLinks.length; i++) {
-  // Si el usuario está en un dispositivo móvil, cambiar el comportamiento del enlace
-  if (isMobile) {
-    var href = socialLinks[i].getAttribute('href');
-    if (href.includes('facebook.com')) {
-      socialLinks[i].setAttribute('href', 'fb://facewebmodal/f?href=' + href);
-    } else if (href.includes('instagram.com')) {
-      socialLinks[i].setAttribute('href', 'instagram://user?username=' + href.split('.com/')[1]);
-    } else if (href.includes('youtube.com')) {
-      socialLinks[i].setAttribute('href', 'vnd.youtube://' + href.split('.com/')[1]);
+// Obtener todos los botones de las redes sociales
+const socialButtons = document.querySelectorAll(".social-links .social-btn");
+
+// Iterar sobre cada botón
+socialButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    // Prevenir el comportamiento por defecto del enlace
+    event.preventDefault();
+
+    // Si el usuario está en un dispositivo móvil, cambiar el comportamiento del enlace
+    if (isMobile) {
+      if (button.id === "facebook") {
+        window.location.href = 'fb://facewebmodal/f?href=' + facebookUrl;
+      } else if (button.id === "instagram") {
+        window.location.href = 'instagram://user?username=' + instagramUrl.split('.com/')[1];
+      } else if (button.id === "youtube") {
+        window.location.href = 'vnd.youtube://' + youtubeUrl.split('.com/')[1];
+      }
+    } else {
+      // Si el usuario no está en un dispositivo móvil, abrir el enlace en una nueva pestaña
+      if (button.id === "facebook") {
+        window.open(facebookUrl, '_blank');
+      } else if (button.id === "instagram") {
+        window.open(instagramUrl, '_blank');
+      } else if (button.id === "youtube") {
+        window.open(youtubeUrl, '_blank');
+      }
     }
-  }
-}
+  });
+});
