@@ -339,3 +339,24 @@ document.getElementById('contact').addEventListener('submit', function (e) {
 //     // Maneja cualquier error que ocurra durante la solicitud
 //     console.error('Error al obtener la transmisión en vivo:', error);
 //   });
+
+// Detectar si el usuario está en un dispositivo móvil
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+// Obtener todos los enlaces de las redes sociales
+var socialLinks = document.querySelectorAll('.social-links a');
+
+// Iterar sobre cada enlace
+for (var i = 0; i < socialLinks.length; i++) {
+  // Si el usuario está en un dispositivo móvil, cambiar el comportamiento del enlace
+  if (isMobile) {
+    var href = socialLinks[i].getAttribute('href');
+    if (href.includes('facebook.com')) {
+      socialLinks[i].setAttribute('href', 'fb://facewebmodal/f?href=' + href);
+    } else if (href.includes('instagram.com')) {
+      socialLinks[i].setAttribute('href', 'instagram://user?username=' + href.split('.com/')[1]);
+    } else if (href.includes('youtube.com')) {
+      socialLinks[i].setAttribute('href', 'vnd.youtube://' + href.split('.com/')[1]);
+    }
+  }
+}

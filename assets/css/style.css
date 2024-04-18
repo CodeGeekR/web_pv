@@ -121,7 +121,7 @@ p {
   font-size: 15px;
   line-height: 30px;
   color: #2a2a2a;
-  text-wrap: pretty;
+  text-wrap: break-word;
 }
 
 img {
@@ -1334,6 +1334,15 @@ Portfolio
   top: 90px;
 }
 
+@media (max-width: 576px) {
+  .our-portfolio .item:hover .hidden-content,
+  .our-portfolio .item:hover .showed-content {
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .our-portfolio .hidden-content {
   background: rgb(255,77,30);
   background: linear-gradient(105deg, rgba(255,77,30,1) 0%, rgba(255,44,109,1) 100%);
@@ -1488,6 +1497,27 @@ Encuentranos
   height: 100%;
   border-radius: 20px;
 }
+
+/* Stylo para el boton de pagos PSE*/ 
+.Btn-PSE {
+  width: 130px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(15, 15, 15);
+  border: none;
+  color: white;
+  font-weight: 600;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  border-radius: 20px; /* Añadido border-radius */
+}
+
 
 /* 
 ---------------------------------------------
@@ -1761,11 +1791,13 @@ Footer Style
 footer {
   padding: 20px;
   text-align: center;
+  background-color: #22C9BE;
 }
 
 footer p {
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .social-icons {
@@ -1773,7 +1805,7 @@ footer p {
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  color: #000000;
+  color: #ffffff;
 }
 
 .social-icons li {
@@ -1784,6 +1816,10 @@ footer p {
   color: #22C9BE;
   text-decoration: none;
   font-size: 24px;
+}
+
+.social-icons i {
+  font-size: 35px;
 }
 
 .developer {
@@ -1802,7 +1838,7 @@ footer p {
 }
 
 .developer-link:hover {
-  color: #22C9BE; /* Cambia el color del enlace al pasar el mouse */
+  color: #fe3f40; /* Cambia el color del enlace al pasar el mouse */
   background-size: 100% 2px; /* Al pasar el mouse, la línea se expande para tener el mismo ancho que el texto */
 }
 
