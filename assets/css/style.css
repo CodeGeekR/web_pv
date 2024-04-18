@@ -1763,6 +1763,11 @@ footer {
   text-align: center;
 }
 
+footer p {
+  font-size: 17px;
+  font-weight: 500;
+}
+
 .social-icons {
   list-style: none;
   display: flex;
