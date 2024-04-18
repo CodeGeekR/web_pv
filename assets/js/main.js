@@ -182,7 +182,7 @@ function iniciarGlightbox() {
 // main.js
 
 // Haz la solicitud a nuestro servidor Express usando Axios
-axios.get('./assets/data/live.json')
+axios.get('/api/live')
   .then(response => {
     const data = response.data;
     // Verifica si data.liveVideoId existe
