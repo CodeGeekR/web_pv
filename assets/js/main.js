@@ -182,26 +182,20 @@ function iniciarGlightbox() {
 // main.js
 
 // Haz la solicitud a nuestro servidor Express usando Axios
-axios.get('/api/live')
+axios.get('./assets/data/live.json')
   .then(response => {
     const data = response.data;
-    // Verifica si data.items existe y tiene al menos un elemento
-    if (data.items && data.items.length > 0) {
-      const liveBroadcast = data.items[0];
-      // Verifica si liveBroadcast es un objeto válido
-      if (liveBroadcast) {
-        const liveVideoId = liveBroadcast.id.videoId;
-        const videoContainer = document.querySelector('.video-content-left');
-        // Inserta el video en vivo en el contenedor
-        videoContainer.innerHTML = `
-          <div class="col-md-12 col-12">
-            <iframe class="rounded-video" width="100%" height="420" src="https://www.youtube.com/embed/${liveVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts; allow-same-origin" allowfullscreen></iframe>
-            <div class="live-indicator">
-              <span class="live-dot"></span>
-              <span>En Vivo</span>
-            </div>
-          </div>`;
-      }
+    // Verifica si data.liveVideoId existe
+    if (data.liveVideoId) {
+      // Si liveVideoId es null, usa el video predeterminado
+      const videoId = data.liveVideoId === "null" ? "tKyLOk2ro3g" : data.liveVideoId;
+      const videoContainer = document.querySelector('.video-content-left');
+      // Inserta el video en el contenedor
+      videoContainer.innerHTML = `
+        <div class="col-md-12 col-12">
+          <iframe class="rounded-video" width="100%" height="420" src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; allow-scripts; allow-same-origin" allowfullscreen></iframe>
+          ${data.liveVideoId !== "null" ? '<div class="live-indicator"><span class="live-dot"></span><span>En Vivo</span></div>' : ''}
+        </div>`;
     } else {
       // No hay datos válidos de transmisión en vivo, carga contenido alternativo
       const videoContainer = document.querySelector('.video-content-left');

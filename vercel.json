@@ -10,6 +10,7 @@
         { "source": "/assets/data/(.*)", "destination": "/assets/data/$1" },
         { "source": "/assets/images/(.*)", "destination": "/assets/images/$1" },
         { "source": "/assets/fonts/(.*)", "destination": "/assets/fonts/$1" },
+        { "source": "/assets/data/(.*)", "destination": "/assets/data/$1" },
         { "source": "/vendor/bootstrap/css/(.*)", "destination": "/vendor/bootstrap/css/$1" },
         { "source": "/vendor/bootstrap/js/(.*)", "destination": "/vendor/bootstrap/js/$1" },
         { "source": "/vendor/jquery/(.*)", "destination": "/vendor/jquery/$1" },
