@@ -1175,7 +1175,16 @@ Banner Style
   width: 100%; /* Ancho del botón */
   text-align: center; /* Alinea el texto del botón al centro */
   transition: color 0.5s; /* Añade una transición suave al color del texto del botón */
+  margin: auto; /* Centra el botón horizontalmente */
   margin-top: 5%; /* Espacio exterior encima del botón */
+  margin-left: 5%; /* Espacio exterior a la izquierda del botón */
+}
+
+@media (max-width : 992px) {
+  .btn-transmision {
+    margin-top: 5%;
+    margin-left: 0;
+  }
 }
 
 /* Estilos para el icono dentro del botón de Transmisión en vivo */
