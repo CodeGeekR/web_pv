@@ -372,3 +372,47 @@ socialButtons.forEach((button) => {
     }
   });
 });
+
+
+// Funcionalidad del Botón de transmisión en Vivo para conectar con Calendario de Google
+document.querySelectorAll('.dropdown-item').forEach(item => {
+  item.addEventListener('click', event => {
+    event.preventDefault();
+    const horario = event.target.getAttribute('data-horario');
+    let recur, nextDate;
+    const today = new Date();
+    switch (horario) {
+      case 'Culto - Domingos 7am':
+        recur = 'FREQ=WEEKLY;BYDAY=SU'; // Cada domingo
+        nextDate = getNextDayOfWeek(today, 0, 7); // 0 = domingo
+        break;
+      case 'Culto - Domingos 10am':
+        recur = 'FREQ=WEEKLY;BYDAY=SU'; // Cada domingo
+        nextDate = getNextDayOfWeek(today, 0, 10); // 0 = domingo
+        break;
+      case 'Oracion - Lunes a Viernes 5am':
+        recur = 'FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR'; // De lunes a viernes
+        nextDate = getNextDayOfWeek(today, 1, 5); // 1 = lunes
+        break;
+      default:
+        recur = '';
+    }
+    const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(horario)}&dates=${formatDateToGoogleCalendar(nextDate)}&details=Transmision+en+vivo&recur=${recur}`;
+    window.open(url, '_blank');
+  });
+});
+
+// Función para obtener el próximo día de la semana
+function getNextDayOfWeek(date, dayOfWeek, hour) {
+  const resultDate = new Date(date.getTime());
+  resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay() - (date.getHours() >= hour ? 1 : 0)) % 7);
+  resultDate.setHours(hour);
+  resultDate.setMinutes(0);
+  resultDate.setSeconds(0);
+  return resultDate;
+}
+
+// Función para formatear la fecha al formato requerido por Google Calendar
+function formatDateToGoogleCalendar(date) {
+  return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+}

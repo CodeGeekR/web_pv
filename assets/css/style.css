@@ -1122,7 +1122,7 @@ Banner Style
 
 /* end of video play button */
 
-
+/* Boton red indicador LIVE dentro del video online*/
 .live-indicator {
   position: absolute;
   top: 10px;
@@ -1155,6 +1155,115 @@ Banner Style
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
+}
+
+/* Estilos para el botón de Transmisión en vivo */
+.btn-transmision {
+  position: relative; /* Posiciona el botón relativo a su posición normal */
+  overflow: hidden; /* Oculta cualquier contenido que se salga del botón */
+  display: inline-block; /* Hace que el botón se comporte como un elemento en línea y un bloque */
+  background-color: #FEE1E4; /* Color de fondo del botón */
+  font-size: 15px; /* Tamaño de la fuente del botón */
+  font-weight: 400; /* Grosor de la fuente del botón */
+  color: #FC3154; /* Color del texto del botón */
+  text-transform: capitalize; /* Transforma el primer carácter de cada palabra a mayúsculas */
+  padding: 12px 25px; /* Espacio interior del botón */
+  border-color: #FC3154; /* Color del borde del botón */
+  border-width: 2px; /* Ancho del borde del botón */
+  border-radius: 23px; /* Redondea las esquinas del botón */
+  letter-spacing: 0.25px; /* Espacio entre las letras del texto del botón */
+  width: 100%; /* Ancho del botón */
+  text-align: center; /* Alinea el texto del botón al centro */
+  transition: color 0.5s; /* Añade una transición suave al color del texto del botón */
+  margin-top: 5%; /* Espacio exterior encima del botón */
+}
+
+/* Estilos para el icono dentro del botón de Transmisión en vivo */
+.btn-transmision i {
+  margin-right: 10px; /* Espacio a la derecha del icono */
+  transition: color 0.5s; /* Añade una transición suave al color del icono */
+}
+
+/* Estilos para el pseudo-elemento antes del botón de Transmisión en vivo */
+.btn-transmision::before {
+  content: ""; /* Contenido del pseudo-elemento */
+  position: absolute; /* Posiciona el pseudo-elemento en relación con el botón */
+  top: 0; /* Posiciona el pseudo-elemento en la parte superior del botón */
+  left: 0; /* Posiciona el pseudo-elemento en el lado izquierdo del botón */
+  width: 100%; /* Ancho del pseudo-elemento */
+  height: 100%; /* Altura del pseudo-elemento */
+  background: linear-gradient(0deg, #FC3154 50%, transparent 50%); /* Fondo del pseudo-elemento */
+  background-size: 100% 200%; /* Tamaño del fondo del pseudo-elemento */
+  transform: translateY(100%); /* Mueve el pseudo-elemento hacia abajo */
+  transition: transform 0.5s, background-position 0.5s; /* Añade una transición suave a la transformación y a la posición del fondo del pseudo-elemento */
+  z-index: -1; /* Posiciona el pseudo-elemento detrás del botón */
+}
+
+/* Estilos para el botón de Transmisión en vivo cuando se pasa el mouse sobre él */
+.btn-transmision:hover {
+  color: #FEE1E4; /* Cambia el color del texto del botón */
+}
+
+/* Estilos para el icono dentro del botón de Transmisión en vivo cuando se pasa el mouse sobre él */
+.btn-transmision:hover i {
+  color: #FEE1E4; /* Cambia el color del icono */
+}
+
+/* Estilos para el pseudo-elemento antes del botón de Transmisión en vivo cuando se pasa el mouse sobre él */
+.btn-transmision:hover::before {
+  transform: translateY(0); /* Mueve el pseudo-elemento hacia arriba */
+  background-position: 0 -100%; /* Cambia la posición del fondo del pseudo-elemento */
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+  width: 100%; /* Ancho del menú desplegable */
+  border-radius: 20px; /* Redondea las esquinas del menú desplegable */
+  border-color: #FC3154; /* Color del borde del menú desplegable */
+  border-width: 2px; /* Ancho del borde del menú desplegable */
+  overflow: hidden; /* Oculta cualquier contenido que se salga del menú desplegable */
+}
+
+/* Estilos para cada elemento del menú desplegable */
+.dropdown-item {
+  color: #FC3154; /* Color del texto de cada elemento del menú desplegable */
+  transition: text-shadow 0.3s ease; /* Añade una transición suave a la sombra del texto de cada elemento del menú desplegable */
+}
+
+/* Estilos para cada elemento del menú desplegable cuando se pasa el mouse sobre él */
+.dropdown-item:hover {
+  text-shadow: 1px 1px #FEE1E4 !important; /* Añade una sombra de texto de color #FEE1E4 */
+}
+
+/* Estilos para cada elemento del menú desplegable cuando se pasa el mouse sobre él */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #FEE1E4; /* Cambia el color de fondo de cada elemento del menú desplegable */
+  color: #FC3154; /* Cambia el color del texto de cada elemento del menú desplegable */
+}
+
+/* Estilos para el botón de Transmisión en vivo cuando está enfocado */
+.btn-transmision:focus {
+  outline: none; /* Elimina el contorno predeterminado del botón cuando está enfocado */
+  box-shadow: 0 0 0 0.2rem rgba(254, 225, 228, 0.5); /* Añade una sombra de caja al botón cuando está enfocado */
+}
+
+/* Estilos para el botón de Transmisión en vivo cuando está enfocado o cuando se pasa el mouse sobre él */
+.btn-transmision:focus,
+.btn-transmision:hover {
+  color: #FEE1E4; /* Cambia el color del texto del botón */
+}
+
+/* Estilos para el icono dentro del botón de Transmisión en vivo cuando está enfocado o cuando se pasa el mouse sobre él */
+.btn-transmision:focus i,
+.btn-transmision:hover i {
+  color: #FEE1E4; /* Cambia el color del icono */
+}
+
+/* Estilos para el pseudo-elemento antes del botón de Transmisión en vivo cuando está enfocado o cuando se pasa el mouse sobre él */
+.btn-transmision:focus::before,
+.btn-transmision:hover::before {
+  transform: translateY(0); /* Mueve el pseudo-elemento hacia arriba */
+  background-position: 0 -100%; /* Cambia la posición del fondo del pseudo-elemento */
 }
 
 /* 
