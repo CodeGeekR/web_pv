@@ -1164,7 +1164,7 @@ Banner Style
   display: inline-block; /* Hace que el botón se comporte como un elemento en línea y un bloque */
   background-color: #FEE1E4; /* Color de fondo del botón */
   font-size: 15px; /* Tamaño de la fuente del botón */
-  font-weight: 400; /* Grosor de la fuente del botón */
+  font-weight: 600; /* Grosor de la fuente del botón */
   color: #FC3154; /* Color del texto del botón */
   text-transform: capitalize; /* Transforma el primer carácter de cada palabra a mayúsculas */
   padding: 12px 25px; /* Espacio interior del botón */
@@ -1177,7 +1177,6 @@ Banner Style
   transition: color 0.5s; /* Añade una transición suave al color del texto del botón */
   margin: auto; /* Centra el botón horizontalmente */
   margin-top: 5%; /* Espacio exterior encima del botón */
-  margin-left: 5%; /* Espacio exterior a la izquierda del botón */
 }
 
 @media (max-width : 992px) {
