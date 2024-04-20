@@ -1187,6 +1187,13 @@ Banner Style
   }
 }
 
+@media (min-width : 993px) {
+  .btn-transmision {
+    margin-top: 5%;
+    margin-left: 5%;
+  }
+}
+
 /* Estilos para el icono dentro del botón de Transmisión en vivo */
 .btn-transmision i {
   margin-right: 10px; /* Espacio a la derecha del icono */
