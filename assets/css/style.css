@@ -26,7 +26,7 @@ font & reset css
 reset
 --------------------------------------------- 
 */
-
+  /* para hacer debug */
 * {
   box-sizing: border-box;
   /* position: relative;
@@ -34,6 +34,11 @@ reset
   border: 1px solid red !important; */
 }
 
+/* 
+ * Reseteo de estilos CSS
+ * Este bloque de código elimina los márgenes, rellenos, bordes y contornos predeterminados de todos los elementos HTML.
+ * Es una buena práctica comenzar con un reset CSS para asegurarse de que todos los navegadores rendericen los elementos de la misma manera.
+ */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
 s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
@@ -44,7 +49,11 @@ figure, header, nav, section, article, aside, footer, figcaption {
   outline: 0;
 }
 
-/* clear fix */
+/* 
+ * Clearfix
+ * Este bloque de código se utiliza para limpiar flotaciones. 
+ * Es una forma de asegurarse de que el contenedor de elementos flotantes se expanda para incluir todos sus hijos flotantes.
+ */
 .grid:after {
   content: '';
   display: block;
@@ -80,6 +89,10 @@ figure, header, nav, section, article, aside, footer, figcaption {
   display: inline-block;
 }
 
+/* 
+ * Estilos de tipografía
+ * Este bloque de código establece la fuente, el tamaño de fuente, el espaciado de línea y el color para varios elementos de texto.
+ */
 html[xmlns] .clearfix {
   display: block;
 }
@@ -107,6 +120,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 
+ * Estilos de enlace
+ * Este bloque de código elimina la subrayado de todos los enlaces.
+ */
 a {
   text-decoration: none !important;
 }
@@ -257,7 +274,7 @@ header
 */
 
 .background-header {
-  background-color: #fff!important;
+  background-color: #fafafa!important;
   height: 80px!important;
   position: fixed!important;
   top: 0px;
@@ -341,13 +358,22 @@ header
   float: right;
   margin-top: 30px;
   margin-right: 0px;
-  background-color: transparent;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
   position: relative;
   z-index: 999;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+  .header-area .col-12 {
+    background-color: #fafafa;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+  .header-area .main-nav .nav a {
+    position: relative;
+    top: -10px;
+  }
 }
 
 .header-area .main-nav .nav li {
