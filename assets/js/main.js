@@ -363,3 +363,25 @@ function getNextDayOfWeek(date, dayOfWeek, hour) {
 function formatDateToGoogleCalendar(date) {
   return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
 }
+
+
+// Código para enviar mensaje de WhatsApp
+function addChatWp() {
+  // Selecciona el botón de WhatsApp
+  var botonWhatsApp = document.querySelector("#whatsapp");
+
+  // Agrega un evento de clic al botón
+  botonWhatsApp.addEventListener("click", function (event) {
+    // Previene la acción por defecto del botón
+    event.preventDefault();
+    // Define el mensaje personalizado que se enviará
+    var mensaje = "Hola, me gustaría dejar una petición de oración:";
+    // Codifica el mensaje para usarlo en una URL
+    var mensajeCodificado = encodeURIComponent(mensaje);
+    // Abre una nueva pestaña con la URL de WhatsApp y el mensaje codificado
+    window.open("https://api.whatsapp.com/send?phone=+573208173036&text=" + mensajeCodificado, "_blank");
+  });
+}
+
+// Agrega el evento de carga a la ventana para ejecutar la función addChatWp
+window.addEventListener("load", addChatWp);

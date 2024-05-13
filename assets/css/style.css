@@ -29,9 +29,9 @@ reset
   /* para hacer debug */
 * {
   box-sizing: border-box;
-  /* position: relative;
-  min-width: 0;
-  border: 1px solid red !important; */
+  /* position: relative; */
+  /* min-width: 0; */
+  /* border: 1px solid red !important; */
 }
 
 /* 
@@ -194,7 +194,6 @@ body {
 
 .section-heading h2 {
   font-size: 30px;
-  text-transform: capitalize;
   color: #2a2a2a;
   font-weight: 700;
   letter-spacing: 0.25px;
@@ -1337,17 +1336,19 @@ About Us Style
 
 .about-us .services .item {
   margin-bottom: 30px;
+  display: flex;
 }
 
 .about-us .services .item .icon {
   float: left;
-  margin-right: 25px;
+  margin-right:25px;
+  margin-bottom: 12%;
 }
 
 .about-us .services .item .icon i {
-  /* cambiar tamaño de los iconos de bootstrap*/
   font-size: 50px;
   color: #e7e7e7;
+  margin-bottom: 100%;
 }
 
 .about-us .services .item h4 {
@@ -1601,6 +1602,7 @@ Encuentranos
   overflow: hidden;
   padding-top: 73.25%; /* Ratio 16:9 para el mapa */
   margin-top: 0px;
+  height: 36.2vh;
 }
 
 @media (max-width: 767px) {
@@ -1884,7 +1886,7 @@ form#contact input {
 }
 
 form#contact input::placeholder {
-  color: #2a2a2a;
+  color: #464646a8;
 }
 
 form#contact textarea {
@@ -1906,7 +1908,7 @@ form#contact textarea {
 }
 
 form#contact textarea::placeholder {
-  color: #2a2a2a;
+  color: #464646a8;
 }
 
 form#contact button {
