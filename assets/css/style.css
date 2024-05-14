@@ -120,6 +120,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  margin-top: 100px;
+}
+
 /* 
  * Estilos de enlace
  * Este bloque de código elimina la subrayado de todos los enlaces.
