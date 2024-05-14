@@ -31,7 +31,7 @@ reset
   box-sizing: border-box;
   /* position: relative; */
   /* min-width: 0; */
-  /* border: 1px solid red !important; */
+  border: 1px solid red !important;
 }
 
 /* 
@@ -146,7 +146,7 @@ p {
   font-size: 15px;
   line-height: 30px;
   color: #2a2a2a;
-  text-wrap: break-word;
+  text-wrap: wrap;
 }
 
 img {
@@ -2217,4 +2217,83 @@ responsive
 .btn-alert-contact {
   background-color: #3b5998 !important;
   color: white !important;
+}
+
+.message-click {
+  /*agregar style para que la letra del parrafo sea mayuscula, centrada y con negrilla*/
+  margin-top: 10%;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+  font-size: 15px;
+  text-wrap: wrap;
+}
+
+.material-unidades {
+  display: inline-block;
+  background-color: #fe3f40;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 12px 25px;
+  border-radius: 23px;
+  letter-spacing: 0.25px;
+}
+
+.material-unidades:hover {
+  background-color: #22C9BE;
+  color: white;
+}
+
+.material-unidades-green {
+  display: inline-block;
+  background-color: #22C9BE;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 12px 25px;
+  border-radius: 23px;
+  letter-spacing: 0.25px;
+}
+
+.material-unidades-green:hover {
+  background-color: #fe3f40;
+  color: white;
+}
+
+.content-image {
+  width: 430px; 
+  height: 178px; 
+  object-fit: cover;
+}
+
+/* Estilos para pantallas de hasta 576px de ancho */
+@media (max-width: 576px) {
+  #overlay {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #overlay {
+    width: calc(100% - 30px); /* Restamos el margen izquierdo y derecho */
+    height: auto; /* Mantenemos la proporción de la imagen */
+  }
+
+  .content-image {
+    width: 370px; 
+    height: 150px; 
+    margin: 30px 30px; /* Centra la imagen el primer valor es para la izquierda y el segundo para la derecha */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .imagen-materiales {
+  /* hacer que las imagenes se viaulicen centradas de arriba a abajo en el espacio disponible*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 }
