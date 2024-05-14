@@ -133,8 +133,62 @@
     </section>
     <!-- END Carousel Banner Home -->
 
+    <!-- Sección que contiene la imagen y el video -->
+    <section class="d-flex flex-column align-items-center justify-content-center">
+      <!-- Imagen centrada de 430x178px -->
+      <img src="../assets/images/dominikids-landing-430.webp" alt="Descripción de la imagen" class="my-3"
+        style="width: 430px; height: 178px; object-fit: cover;">
 
+      <!-- Contenedor del video -->
+      <div class="position-relative">
+        <!-- Video centrado de 660x370px -->
+        <video id="video" src="../assets/video/convocatoria-mastros-escuela-dominical.mp4" width="660" height="370" class="img-fluid rounded" controls
+          muted></video>
 
+        <!-- Animación para incitar al clic y texto sobre el video -->
+        <div id="overlay" class="position-absolute top-50 start-50 translate-middle text-center">
+          <p class="text-black fs-4">¿Cómo son los maestros que les gustan a los niños?</p>
+          <div class="animate__animated animate__bounce animate__infinite">
+            <!-- Añadido id al icono para poder seleccionarlo con JavaScript -->
+            <i id="play-icon" class="bi bi-play-circle-fill text-black " style="font-size: 4rem; cursor: pointer;"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Materiales para maestros -->
+
+    <section class="d-flex flex-column align-items-center justify-content-center mt-5">
+      <div class="container">
+        <div class="row">
+          <!-- Título centrado -->
+          <div class="section-heading text-center wow bounceIn" data-wow-duration="1s" data-wow-delay="0.2s">
+            <h2><em>Materiales</em> para <span>Maestros</span></h2>
+          </div>
+          <!-- Fila con imagen, texto e imagen -->
+          <div class="row mt-5">
+            <!-- Imagen a la izquierda -->
+            <div class="col-12 col-md-4  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+              <img src="../assets/images/manualidades-para-escuela-dominical.webp" alt="Descripción de la imagen 1" class="img-fluid">
+            </div>
+            <!-- Texto en el centro -->
+            <div class="col-12 col-md-4">
+              <p>Sí eres maestro de DOMINIKIDS (escuela Dominical) podrás acceder a nuestro material haciendo click en los botones que enuncian los
+                grupos
+                por edades, este sera actualizado semanales, prepara este material , estúdialo y pon tu enseñanza en oración para que el espíritu sea
+                quien te dirija. Si eres miembro de Palabra viva o otra iglesia tienes la libertad de descargar el material y usarlo para las
+                enseñanzas
+                de tú
+                congregación.</p>
+            </div>
+            <!-- Imagen a la derecha -->
+            <div class="col-12 col-md-4 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+              <img src="../assets/images/manualidades-para-escuela-dominical2.webp" alt="Descripción de la imagen 2" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- <section id="blog" class="our-blog section">
     <div class="container">
@@ -311,7 +365,7 @@
     <script src="../assets/js/animation.js"></script>
     <script src="../assets/js/imagesloaded.js"></script>
     <script src="../assets/js/glightbox.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/domini-kids.js"></script>
 
 </body>
 

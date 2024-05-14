@@ -96,7 +96,15 @@
     var scrollPos = $(document).scrollTop();
     $('.nav a').each(function () {
       var currLink = $(this);
-      var refElement = $(currLink.attr("href"));
+      var refElement;
+      // Verifica si el href es una URL interna
+      if (currLink.attr("href").startsWith("#")) {
+        refElement = $(currLink.attr("href"));
+      }
+      // Si el href no es una URL interna, no intenta seleccionarlo
+      else {
+        return;
+      }
       if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
         $('.nav ul li a').removeClass("active");
         currLink.addClass("active");
@@ -106,7 +114,6 @@
       }
     });
   }
-
 
 
   // Page loading animation
