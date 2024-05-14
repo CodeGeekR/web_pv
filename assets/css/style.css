@@ -31,7 +31,7 @@ reset
   box-sizing: border-box;
   /* position: relative; */
   /* min-width: 0; */
-  border: 1px solid red !important;
+  /* border: 1px solid red !important; */
 }
 
 /* 
@@ -2295,5 +2295,12 @@ responsive
   display: flex;
   justify-content: center;
   align-items: center;
+  }
+}
+
+/* CSS para ajustar la altura de los videos en pantallas grandes */
+@media (min-width: 992px) {
+  .video-lg {
+    height: 290px;
   }
 }
