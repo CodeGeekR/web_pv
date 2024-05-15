@@ -216,23 +216,31 @@ function addChatWp() {
 // Agrega el evento de carga a la ventana para ejecutar la función addChatWp
 window.addEventListener("load", addChatWp);
 
-
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona el icono de reproducción
     var iconoReproduccion = document.querySelector("#play-icon");
 
-    // Selecciona el video
-    var video = document.querySelector("#video");
+    // Selecciona la imagen de vista previa del video
+    var vistaPreviaVideo = document.querySelector("#video-preview");
 
     // Selecciona el texto
     var texto = document.querySelector("#overlay p");
 
     // Agrega un evento de clic al icono de reproducción
     iconoReproduccion.addEventListener("click", function () {
-        // Quita el atributo muted del video
+        // Crea un nuevo elemento de video
+        var video = document.createElement('video');
+        video.src = '../assets/video/convocatoria-mastros-escuela-dominical.mp4';
+        video.controls = true;
+        video.autoplay = true;
         video.muted = false;
-        // Inicia la reproducción del video
-        video.play();
+        video.className = 'img-fluid rounded video-sm';
+        video.style.width = vistaPreviaVideo.offsetWidth + "px"; // Asegura que el video tenga la misma anchura que la imagen
+        video.style.height = vistaPreviaVideo.offsetHeight + "px"; // Asegura que el video tenga la misma altura que la imagen
+
+        // Reemplaza la imagen de vista previa con el video
+        vistaPreviaVideo.parentNode.replaceChild(video, vistaPreviaVideo);
+
         // Oculta el icono
         iconoReproduccion.style.display = "none";
         // Oculta el texto

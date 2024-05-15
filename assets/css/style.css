@@ -2301,6 +2301,25 @@ responsive
 /* CSS para ajustar la altura de los videos en pantallas grandes */
 @media (min-width: 992px) {
   .video-lg {
-    height: 290px;
+    height: 294px;
+  }
+}
+
+@media (max-width: 991px) {
+  .video-lg {
+    height: 100%;
+  }
+}
+
+/* CSS para ocultar los controles del video en pantallas pequeñas */
+@media (max-width: 576px) {
+  .video-sm::-webkit-media-controls {
+    display: none;
+  }
+  .video-sm::-moz-media-controls {
+    display: none;
+  }
+  .video-sm::-ms-media-controls {
+    display: none;
   }
 }
