@@ -2323,3 +2323,42 @@ responsive
     display: none;
   }
 }
+
+/* Estilos CSS */
+.imagen-tarjeta {
+  transition: transform .2s;
+  border-radius: 20px;
+  object-fit: cover; /* La imagen cubrirá todo el espacio disponible */
+  width: 100%; /* La imagen ocupará todo el ancho de la tarjeta */
+  height: 100%; /* La imagen ocupará todo el alto de la tarjeta */
+}
+
+.imagen-tarjeta:hover {
+  transform: scale(1.1) ; /* Aumenta el tamaño de la imagen al pasar el mouse sobre ella */
+}
+
+.card-img-overlay {
+  background: rgba(0, 0, 0, 0.306);
+  opacity: 0;
+  transition: opacity .2s;
+  border-radius : 20px;
+}
+
+.card:hover .card-img-overlay {
+  opacity: 1; /* Visible al pasar el mouse sobre la tarjeta */
+}
+
+.card {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra inicial */
+  transition: box-shadow .2s; /* Transición de la sombra */
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Sombra mayor al pasar el mouse */
+}
+
+.icono-red-social {
+  margin-right: 30px; /* Espacio a la derecha de cada icono */
+}
