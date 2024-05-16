@@ -2326,15 +2326,11 @@ responsive
 
 /* Estilos CSS */
 .imagen-tarjeta {
-  transition: transform .2s;
   border-radius: 20px;
-  object-fit: cover; /* La imagen cubrirá todo el espacio disponible */
-  width: 100%; /* La imagen ocupará todo el ancho de la tarjeta */
-  height: 100%; /* La imagen ocupará todo el alto de la tarjeta */
-}
-
-.imagen-tarjeta:hover {
-  transform: scale(1.1) ; /* Aumenta el tamaño de la imagen al pasar el mouse sobre ella */
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform .5s;
 }
 
 .card-img-overlay {
@@ -2351,8 +2347,8 @@ responsive
 .card {
   border-radius: 20px;
   border: none;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Sombra inicial */
-  transition: box-shadow .2s; /* Transición de la sombra */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: box-shadow .7s;
 }
 
 .card:hover {
@@ -2361,4 +2357,24 @@ responsive
 
 .icono-red-social {
   margin-right: 30px; /* Espacio a la derecha de cada icono */
+}
+
+.section-predicas {
+  margin-top: 100px; /* Ajusta este valor según tus necesidades */
+}
+
+.proyecto-felipe {
+  display: inline-block;
+  background-color: #fe3f40;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 23px;
+  letter-spacing: 0.25px;
+}
+
+.proyecto-felipe:hover {
+  background-color: #22C9BE;
+  color: white;
 }
