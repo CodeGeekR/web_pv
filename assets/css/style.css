@@ -2378,3 +2378,22 @@ responsive
   background-color: #22C9BE;
   color: white;
 }
+
+
+@media (min-width: 768px){
+  #blog .section-heading h2 {
+    margin-left: 155px;
+  }
+}
+
+/* Selecciona todas las imágenes dentro de 'right-image' */
+.right-image img {
+  /* Transición suave durante 0.3 segundos */
+  transition: transform 0.3s;
+}
+
+/* Cuando el mouse pasa sobre la imagen */
+.right-image img:hover {
+  /* Aumenta el tamaño de la imagen en un 10% */
+  transform: scale(1.1);
+}
