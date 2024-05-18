@@ -1621,27 +1621,27 @@ Encuentranos
 @media (min-width: 768px) and (max-width: 993px) {
   .ubicacion-contacto .mapa {
       margin-top: 0px;
-      padding-top: 121%;
+      padding-top: 132%;
     }
   }
 
 @media (min-width: 994px) and (max-width: 1199px) {
   .ubicacion-contacto .mapa {
       margin-top: 0px;
-      padding-top: 88%;
+      padding-top: 95.5%;
     }
   }
 
 @media (min-width: 1200px) and (max-width: 1399px) {
   .ubicacion-contacto .mapa {
       margin-top: 0px;
-      padding-top: 73%;
+      padding-top: 79%;
     }
   }
 
 @media (min-width: 1400px) and (max-width: 4096px) {
   .ubicacion-contacto .mapa {
-    padding-top: 62.25%;
+    padding-top: 68%;
   }
 }
 
@@ -2399,4 +2399,17 @@ responsive
 .right-image img:hover {
   /* Aumenta el tamaño de la imagen en un 10% */
   transform: scale(1.1);
+}
+
+
+@media (max-width: 600px) {
+  /* 
+    La clase 'responsive-iframe' se aplica al iframe para hacerlo responsive.
+    'width: 100%' hace que el iframe ocupe todo el ancho disponible de su contenedor.
+    'height: auto' hace que la altura del iframe sea proporcional a su ancho.
+  */
+  .responsive-iframe {
+    width: 100%;
+    height: auto;
+  }
 }
