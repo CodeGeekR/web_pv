@@ -191,7 +191,7 @@ document.getElementById('contact').addEventListener('submit', function (e) {
   }
 
   // Si todos los campos están llenos, procede con el envío del formulario
-  axios.post('https://pv-samuraidevs-projects.vercel.app/api/send', {
+  axios.post('https://www.palabravivaiglesia.co/api/send', {
     name: name,
     lastname: lastname,
     email: email,

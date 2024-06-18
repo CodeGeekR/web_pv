@@ -5,7 +5,8 @@ const express = require('express'); // express es un framework para crear servid
 const axios = require('axios');
 const cors = require('cors'); // cors nos permite configurar el Cross-Origin Resource Sharing para nuestra aplicación
 const formData = require('form-data'); // form-data nos permite manejar datos de formularios multipart/form-data
-const Mailgun = require('mailgun.js'); // mailgun.js es un cliente para la API de Mailgun
+// const Mailgun = require('mailgun.js'); // mailgun.js es un cliente para la API de Mailgun
+const Resend = require('resend').Resend; // resend es un cliente para la API de Resend
 const expressSanitizer = require('express-sanitizer'); // express-sanitizer nos permite sanitizar los datos de las solicitudes HTTP
 const rateLimit = require('express-rate-limit'); // express-rate-limit nos permite limitar el número de solicitudes que se pueden realizar a una aplicación
 // const path = require('path'); // path nos permite trabajar con rutas de archivos y directorios
@@ -50,11 +51,14 @@ app.use(expressSanitizer());
 // app.use(express.static(path.join(__dirname, '/')));
 
 // Creamos un nuevo cliente de Mailgun
-const mailgun = new Mailgun(formData);
-const mg = mailgun.client({
-    username: 'api',
-    key: process.env.MAILGUN_API_KEY,
-});
+// const mailgun = new Mailgun(formData);
+// const mg = mailgun.client({
+//     username: 'api',
+//     key: process.env.MAILGUN_API_KEY,
+// });
+
+// Creamos un nuevo cliente de Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Aplica una limitación de tasa de 100 solicitudes por hora a todas las rutas
 const limiter = rateLimit({
