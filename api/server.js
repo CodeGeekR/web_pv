@@ -19,7 +19,7 @@ app.get('/index.html', (req, res) => {
 });
 
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.co', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
+const whitelist = ['https://www.palabravivaiglesia.co'];
 
 // Opciones de CORS
 const options = {
@@ -140,9 +140,9 @@ app.get('/api/live', async (req, res) => {
 });
 
 // manejar las peticiones get
-// app.get('/api/send', (req, res) => {
-//     res.send('¡Hola! Soy un servidor Express que envía correos electrónicos.');
-// });
+app.get('/api/send', (req, res) => {
+    res.send('¡Hola! Soy un servidor Express que envía correos electrónicos.');
+});
 
 // Middleware de manejo de errores
 // Este middleware se ejecuta si cualquier otro middleware llama a next() con un error
