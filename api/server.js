@@ -19,7 +19,7 @@ app.get('/index.html', (req, res) => {
 });
 
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.co/', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
+const whitelist = ['https://www.palabravivaiglesia.co', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
 
 // Opciones de CORS
 const options = {
