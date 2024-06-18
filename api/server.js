@@ -13,8 +13,13 @@ const rateLimit = require('express-rate-limit'); // express-rate-limit nos permi
 // Creamos una nueva aplicación Express
 const app = express();
 
+// Redirección de /index.html a la raíz /
+app.get('/index.html', (req, res) => {
+    res.redirect(301, '/');
+});
+
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.com/', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
+const whitelist = ['https://www.palabravivaiglesia.co/', 'https://pv-samuraidevs-projects.vercel.app', 'https://pv-six.vercel.app'];
 
 // Opciones de CORS
 const options = {
@@ -59,67 +64,51 @@ const limiter = rateLimit({
 app.use(limiter);
 
 
-// Creamos una ruta para obtener los datos de la transmisión en vivo de YouTube
-// app.get('/api/live', async (req, res) => {
-//     try {
-//         // Hacemos la solicitud a la API de YouTube
-//         const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-//             params: {
-//                 part: 'snippet',
-//                 channelId: 'UCuRnuWVbzk8snPqZAmuna4w',
-//                 eventType: 'live',
-//                 type: 'video',
-//                 key: process.env.YOUTUBE_API_KEY
-//             }
-//         });
-
-//         // Verifica que response.data contiene los datos esperados
-//         if (
-//             response.data &&
-//             response.data.items &&
-//             response.data.items.length > 0 &&
-//             response.data.items[0].id &&
-//             response.data.items[0].id.videoId
-//         ) {
-//             // La respuesta tiene la estructura esperada
-//             res.json(response.data);
-//         } else {
-//             // La respuesta no tiene la estructura esperada
-//             console.error('Respuesta inesperada de la API de YouTube:', response.data);
-//             throw new Error('Respuesta inesperada de la API de YouTube');
-//         }
-//     } catch (error) {
-//         console.error('Error al obtener la transmisión en vivo:', error);
-
-//         // Analizar el error y proporcionar información más específica
-//         if (error.response) {
-//             console.error('Error de la API de YouTube:', error.response.data);
-//             res.status(error.response.status).json({ error: 'Error de la API de YouTube' });
-//         } else {
-//             res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
-//         }
-//     }
-// });
-
-
 // Definimos una ruta POST para enviar correos electrónicos
-app.post('/api/send', (req, res, next) => {
+app.post('/api/send', async (req, res, next) => {
     // Los datos del correo electrónico se toman del cuerpo de la solicitud
     const data = {
-        from: process.env.MAILGUN_FROM,
-        to: process.env.MAILGUN_TO,
+        from: process.env.RESEND_FROM,
+        to: [process.env.RESEND_TO],
         subject: req.sanitize(req.body.subject),
-        text: `Mensaje de: ${req.sanitize(req.body.name)} ${req.sanitize(req.body.lastname)} (${req.sanitize(req.body.email)})\n\n${req.sanitize(req.body.message)}`
+        html: `Mensaje de: ${req.sanitize(req.body.name)} ${req.sanitize(req.body.lastname)} (${req.sanitize(req.body.email)})<br><br>${req.sanitize(req.body.message)}`
     };
 
-    // Intentamos enviar el correo electrónico
-    mg.messages.create(process.env.MAILGUN_DOMAIN, data)
-        .then(msg => res.json({ msg })) // Si se envía con éxito, respondemos con el mensaje de Mailgun
-        .catch(err => {
-            console.error(err); // Si hay un error, lo registramos
-            next(err); // Pasamos el error al siguiente middleware
-        });
+    try {
+        // Intentamos enviar el correo electrónico
+        const { data: responseData, error } = await resend.emails.send(data);
+
+        if (error) {
+            console.error(error);
+            return res.status(400).json({ error });
+        }
+
+        res.status(200).json({ data: responseData });
+    } catch (error) {
+        // Si hay un error en el proceso de envío del correo, lo registramos y devolvemos un error 500
+        console.error(error);
+        res.status(500).json({ error: 'Hubo un error al enviar el correo electrónico.' });
+    }
 });
+
+// // Definimos una ruta POST para enviar correos electrónicos
+// app.post('/api/send', (req, res, next) => {
+//     // Los datos del correo electrónico se toman del cuerpo de la solicitud
+//     const data = {
+//         from: process.env.MAILGUN_FROM,
+//         to: process.env.MAILGUN_TO,
+//         subject: req.sanitize(req.body.subject),
+//         text: `Mensaje de: ${req.sanitize(req.body.name)} ${req.sanitize(req.body.lastname)} (${req.sanitize(req.body.email)})\n\n${req.sanitize(req.body.message)}`
+//     };
+
+//     // Intentamos enviar el correo electrónico
+//     mg.messages.create(process.env.MAILGUN_DOMAIN, data)
+//         .then(msg => res.json({ msg })) // Si se envía con éxito, respondemos con el mensaje de Mailgun
+//         .catch(err => {
+//             console.error(err); // Si hay un error, lo registramos
+//             next(err); // Pasamos el error al siguiente middleware
+//         });
+// });
 
 // Definimos la ruta para obtener la información del directo de YouTube
 app.get('/api/live', async (req, res) => {
