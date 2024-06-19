@@ -191,11 +191,12 @@ document.getElementById('contact').addEventListener('submit', function (e) {
   }
 
   // Si todos los campos están llenos, procede con el envío del formulario
-  axios.post('https://www.palabravivaiglesia.co/api/send', {
+  axios.post('/api/send', {
     name: name,
     lastname: lastname,
     email: email,
     message: message,
+    subjet: 'Mensaje de la Web PV',
   })
     .then(function (response) {
       Swal.fire({
