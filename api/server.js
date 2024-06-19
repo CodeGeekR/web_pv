@@ -20,7 +20,7 @@ app.get('/index.html', (req, res) => {
 });
 
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.co'];
+const whitelist = ['https://palabravivaiglesia.co', 'https://www.palabravivaiglesia.co', 'https://pv-samuraidevs-projects.vercel.app'];
 
 // Opciones de CORS
 const options = {
@@ -138,8 +138,8 @@ app.get('/api/live', async (req, res) => {
             res.json({ liveVideoId: null }); // Devolvemos null si no hay directo
         }
     } catch (error) {
-        console.error('Error al obtener la transmisión en vivo:', error);
-        res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+        console.error('Error al obtener la transmisión en vivo:', error.message);
+        res.status(500).json({ error: 'Error al obtener la transmisión en vivo', details: error.message });
     }
 });
 
