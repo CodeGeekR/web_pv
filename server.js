@@ -5,16 +5,22 @@ const express = require('express'); // express es un framework para crear servid
 const axios = require('axios');
 const cors = require('cors'); // cors nos permite configurar el Cross-Origin Resource Sharing para nuestra aplicación
 const formData = require('form-data'); // form-data nos permite manejar datos de formularios multipart/form-data
-const Resend = require('resend').Resend; // resend es un cliente para la API de Resend
+// const Mailgun = require('mailgun.js'); // mailgun.js es un cliente para la API de Mailgun
 const expressSanitizer = require('express-sanitizer'); // express-sanitizer nos permite sanitizar los datos de las solicitudes HTTP
 const rateLimit = require('express-rate-limit'); // express-rate-limit nos permite limitar el número de solicitudes que se pueden realizar a una aplicación
+const Resend = require('resend').Resend; // resend es un cliente para la API de Resend
 // const path = require('path'); // path nos permite trabajar con rutas de archivos y directorios
 
 // Creamos una nueva aplicación Express
 const app = express();
 
+// Redirección de /index.html a la raíz /
+app.get('/index.html', (req, res) => {
+    res.redirect(301, '/');
+});
+
 // Lista de orígenes permitidos para las solicitudes CORS
-const whitelist = ['https://www.palabravivaiglesia.co/', 'https://www.palabravivaiglesia.co', 'https://pv-six.vercel.app', 'https://pv-samuraidevs-projects.vercel.app'];
+const whitelist = ['https://palabravivaiglesia.co', 'https://www.palabravivaiglesia.co', 'https://pv-samuraidevs-projects.vercel.app'];
 
 // Opciones de CORS
 const options = {
@@ -44,6 +50,13 @@ app.use(expressSanitizer());
 // Servimos archivos estáticos desde el directorio raíz
 // app.use(express.static(path.join(__dirname, '/')));
 
+// Creamos un nuevo cliente de Mailgun
+// const mailgun = new Mailgun(formData);
+// const mg = mailgun.client({
+//     username: 'api',
+//     key: process.env.MAILGUN_API_KEY,
+// });
+
 // Creamos un nuevo cliente de Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -53,6 +66,7 @@ const limiter = rateLimit({
     max: 100 // limita cada IP a 20 solicitudes por ventana
 });
 app.use(limiter);
+
 
 // Definimos una ruta POST para enviar correos electrónicos
 app.post('/api/send', async (req, res, next) => {
@@ -81,6 +95,25 @@ app.post('/api/send', async (req, res, next) => {
     }
 });
 
+// // Definimos una ruta POST para enviar correos electrónicos
+// app.post('/api/send', (req, res, next) => {
+//     // Los datos del correo electrónico se toman del cuerpo de la solicitud
+//     const data = {
+//         from: process.env.MAILGUN_FROM,
+//         to: process.env.MAILGUN_TO,
+//         subject: req.sanitize(req.body.subject),
+//         text: `Mensaje de: ${req.sanitize(req.body.name)} ${req.sanitize(req.body.lastname)} (${req.sanitize(req.body.email)})\n\n${req.sanitize(req.body.message)}`
+//     };
+
+//     // Intentamos enviar el correo electrónico
+//     mg.messages.create(process.env.MAILGUN_DOMAIN, data)
+//         .then(msg => res.json({ msg })) // Si se envía con éxito, respondemos con el mensaje de Mailgun
+//         .catch(err => {
+//             console.error(err); // Si hay un error, lo registramos
+//             next(err); // Pasamos el error al siguiente middleware
+//         });
+// });
+
 // Definimos la ruta para obtener la información del directo de YouTube
 app.get('/api/live', async (req, res) => {
     try {
@@ -105,19 +138,14 @@ app.get('/api/live', async (req, res) => {
             res.json({ liveVideoId: null }); // Devolvemos null si no hay directo
         }
     } catch (error) {
-        console.error('Error al obtener la transmisión en vivo:', error);
-        res.status(500).json({ error: 'Error al obtener la transmisión en vivo' });
+        console.error('Error al obtener la transmisión en vivo:', error.message);
+        res.status(500).json({ error: 'Error al obtener la transmisión en vivo', details: error.message });
     }
 });
 
 // manejar las peticiones get
 app.get('/api/send', (req, res) => {
     res.send('¡Hola! Soy un servidor Express que envía correos electrónicos.');
-});
-
-// Redirección de /index.html a la raíz /
-app.get('/index.html', (req, res) => {
-    res.redirect(301, '/');
 });
 
 // Middleware de manejo de errores
