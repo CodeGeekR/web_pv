@@ -196,7 +196,7 @@ document.getElementById('contact').addEventListener('submit', function (e) {
     lastname: lastname,
     email: email,
     message: message,
-    subjet: 'Mensaje de la Web PV',
+    subject: 'Mensaje de la Web PV',
   })
     .then(function (response) {
       Swal.fire({

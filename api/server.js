@@ -6,9 +6,9 @@ const axios = require('axios');
 const cors = require('cors'); // cors nos permite configurar el Cross-Origin Resource Sharing para nuestra aplicación
 const formData = require('form-data'); // form-data nos permite manejar datos de formularios multipart/form-data
 // const Mailgun = require('mailgun.js'); // mailgun.js es un cliente para la API de Mailgun
-const Resend = require('resend').Resend; // resend es un cliente para la API de Resend
 const expressSanitizer = require('express-sanitizer'); // express-sanitizer nos permite sanitizar los datos de las solicitudes HTTP
 const rateLimit = require('express-rate-limit'); // express-rate-limit nos permite limitar el número de solicitudes que se pueden realizar a una aplicación
+const Resend = require('resend').Resend; // resend es un cliente para la API de Resend
 // const path = require('path'); // path nos permite trabajar con rutas de archivos y directorios
 
 // Creamos una nueva aplicación Express
