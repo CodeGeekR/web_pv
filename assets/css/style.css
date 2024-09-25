@@ -1999,6 +1999,22 @@ footer p {
   background-size: 100% 2px; /* Al pasar el mouse, la línea se expande para tener el mismo ancho que el texto */
 }
 
+/* Estilos para el enlace de la política de tratamiento de datos */
+.politica-link {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease, background-size 0.3s ease;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+}
+
+.politica-link:hover {
+  color: #fe3f40;
+  background-size: 100% 2px;
+}
+
 
 /* 
 ---------------------------------------------

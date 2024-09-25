@@ -1,0 +1,24 @@
+/* Estilos para la sección de política de tratamiento de datos */
+#politica-datos {
+  background-color: #f9f9f9;
+  padding: 2rem 0;
+  margin-top: 5rem; /* Aumentar la separación del header */
+}
+
+#politica-datos h2 {
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 1rem; /* Separación debajo del h2 */
+  margin-top: 3rem; /* Separación arriba del h2 */
+}
+
+#politica-datos p, #politica-datos ul {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1rem; /* Separación debajo de los <p> */
+}
+
+#politica-datos ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
