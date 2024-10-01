@@ -221,6 +221,17 @@ document.getElementById('contact').addEventListener('submit', function (e) {
     });
 });
 
+// JavaScript para habilitar el botón de envío solo cuando el checkbox está marcado
+document.getElementById('acceptPolicy').addEventListener('change', function () {
+  const submitButton = document.getElementById('form-submit');
+  if (this.checked) {
+    submitButton.disabled = false;
+    submitButton.classList.add('enabled');
+  } else {
+    submitButton.disabled = true;
+    submitButton.classList.remove('enabled');
+  }
+});
 
 // Código para enviar mensaje de WhatsApp
 function addChatWp() {

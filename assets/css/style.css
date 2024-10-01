@@ -1931,12 +1931,56 @@ form#contact button {
   border: none;
   outline: none;
   transition: all .3s;
+  opacity: 0.5; /* Marca de agua */
+  cursor: not-allowed; /* Cursor no permitido */
+}
+
+form#contact button.enabled {
+  opacity: 1; /* Sin marca de agua */
+  cursor: pointer; /* Cursor de puntero */
 }
 
 form#contact button:hover {
   background-color: #fe3f40;
 }
 
+/* Estilos para el checkbox */
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#acceptPolicy.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  flex-shrink: 0; /* Evita que el checkbox se expanda */
+  vertical-align: middle; /* Alinea verticalmente el checkbox con el texto */
+  appearance: none; /* Elimina el estilo por defecto del checkbox */
+  background-color: #fff; /* Fondo blanco */
+  border: 2px solid #464646a8; /* Borde negro */
+  border-radius: 4px; /* Bordes redondeados */
+  position: relative;
+}
+
+#acceptPolicy.form-check-input:checked::before {
+  content: '✔'; /* Contenido de la palomita */
+  color: #2a2a2a; /* Color negro */
+  font-size: 16px; /* Tamaño de la palomita */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra la palomita */
+}
+
+.form-check-label {
+  font-size: 15px;
+  color: #2a2a2a;
+  flex-grow: 1; /* Permite que el texto ocupe el espacio restante */
+  vertical-align: middle; /* Alinea verticalmente el texto con el checkbox */
+  margin-bottom: 15px;
+}
 
 /* 
 ---------------------------------------------
