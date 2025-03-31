@@ -1603,13 +1603,23 @@ Encuentranos
   color: #ffffff;
 }
 
+/* Hacer que el iframe sea responsivo y llene el contenedor */
+.mapa iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 
 .ubicacion-contacto .mapa {
   position: relative;
   overflow: hidden;
   padding-top: 73.25%; /* Ratio 16:9 para el mapa */
   margin-top: 0px;
-  height: 36.2vh;
+  width: 100%;
+  padding-top: 75%; /* Relación de aspecto por defecto (4:3) */
 }
 
 @media (max-width: 767px) {
@@ -1804,7 +1814,7 @@ contact
 
 .contact-us {
   padding: 160px 0px;
-  background-image: url(../images/contact-bg.png);
+  background-image: url(../images/contact-bg.webp);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -2098,10 +2108,15 @@ responsive
     padding: 0px;
   }
   .about-us .left-image {
-    margin-right: 0px;
-    position: absolute;
-    bottom: -220px;
-    right: 0;
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 331px;
+    margin: 0px auto 0px; /* Margen negativo arriba para reducir espacio */
+  }
+
+  .about-us .section {
+    background: #00BBA1;
   }
   .about-us .services {
     text-align: center;
@@ -2113,6 +2128,7 @@ responsive
     border-radius: 20px;
     display: inline-block;
   }
+
   .about-us .services .item .right-text {
     text-align: left;
   }
@@ -2176,9 +2192,99 @@ responsive
   }
 }
 
+
+@media (max-width: 575px) {
+  form#contact {
+    padding: 30px 20px; /* Reduce el padding vertical y horizontal */
+    margin-top: 25px; /* Reduce el margen superior */
+    margin-bottom: 25px; /* Asegura margen inferior reducido */
+  }
+  
+  form#contact input {
+    height: 40px; /* Reduce la altura de los inputs */
+    padding: 0 15px; /* Reduce el padding horizontal de los inputs */
+    margin-bottom: 12px; /* Reduce el espacio entre inputs */
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+  }
+  
+  form#contact textarea {
+    min-height: 100px; /* Reduce la altura mínima del textarea */
+    max-height: 150px; /* Reduce la altura máxima del textarea */
+    height: 100px; /* Altura inicial reducida */
+    padding: 10px 15px; /* Reduce el padding */
+    margin-bottom: 12px; /* Reduce el espacio después del textarea */
+    font-size: 14px; /* Reduce el tamaño de la fuente */
+  }
+  
+  form#contact button {
+    padding: 8px 20px; /* Botón más pequeño */
+    font-size: 14px; /* Texto del botón más pequeño */
+  }
+  
+  .form-check-label {
+    font-size: 13px; /* Reduce el tamaño del texto del checkbox */
+    margin-bottom: 10px; /* Reduce el margen inferior */
+  }
+  
+  #acceptPolicy.form-check-input {
+    width: 16px; /* Checkbox más pequeño */
+    height: 16px; /* Checkbox más pequeño */
+  }
+  
+  .form-check {
+    margin-bottom: 12px; /* Reduce espacio después del checkbox */
+  }
+  
+  /* Reduce el tamaño de los iconos y textos en la información de contacto */
+  .contact-us .section-heading h2 {
+    font-size: 22px !important; /* Título más pequeño */
+    margin-bottom: 10px !important;
+  }
+  
+  .contact-us .section-heading p {
+    font-size: 14px !important; /* Subtítulo más pequeño */
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  .phone-info h4 {
+    font-size: 16px !important; /* Texto de teléfono más pequeño */
+  }
+  
+  .phone-info h4 span i {
+    width: 36px; /* Icono más pequeño */
+    height: 36px; /* Icono más pequeño */
+    line-height: 36px; /* Alinea el icono */
+    font-size: 18px; /* Icono más pequeño */
+  }
+  
+  /* Espacio general de la sección */
+  .contact-us {
+    padding: 80px 0 !important; /* Reduce el padding vertical de toda la sección */
+  }
+}
+
 @media (max-width: 767px) {
   .about-us .left-image {
-    bottom: -280px;
+    /* Eliminar el posicionamiento negativo que causa problemas */
+    bottom: auto; /* En lugar de -280px */
+    position: relative; /* En lugar de absolute */
+    margin-bottom: 30px; /* Espacio adecuado debajo de la imagen */
+    width: 100%; /* Asegurar que ocupe el ancho completo */
+  }
+  
+  /* Asegurar que la imagen dentro se vea correctamente */
+  .about-us .left-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px; /* Mantener los bordes redondeados */
+    object-fit: cover; /* Asegurar que la imagen se ajuste correctamente */
+  }
+  
+  /* Ajustar el contenedor para manejar mejor el flujo de contenido */
+  .about-us {
+    display: flex;
+    flex-direction: column;
   }
   .our-blog .right-list {
     margin-left: 0px;
@@ -2207,6 +2313,27 @@ responsive
   }
 }
 
+/* Nueva media query para pantallas medianas-grandes */
+@media (min-width: 993px) and (max-width: 1440px) {
+  .about-us .services .item {
+    margin-top: 100px;
+  }
+}
+
+/* Ajustes adicionales para evitar cualquier sobreposición */
+@media (max-width: 992px) {
+  .about-us .left-image {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 331px;
+    margin: 0px auto 0px; /* Margen negativo arriba para reducir espacio */
+  }
+
+  .about-us .section {
+    background: #00BBA1;
+  }
+}
 /* Style para los Botones de social networks */
 
 .social-links,.flex-center {
@@ -2471,5 +2598,27 @@ responsive
   .responsive-iframe {
     width: 100%;
     height: auto;
+  }
+}
+
+/* Ajuste de espaciado para el carrusel en pantallas medianas */
+@media (min-width: 768px) and (max-width: 1399px) {
+  /* Ajustes específicos para el carrusel */
+  #bannerCarousel {
+    position: relative;
+    top: 50px; /* Desplaza el carrusel hacia abajo */
+    margin-bottom: 70px; /* Espacio entre el carrusel y los elementos inferiores */
+  }
+  
+  /* Asegura que el header esté por encima del carrusel */
+  .header-area {
+    z-index: 100;
+  }
+}
+
+/* Ajuste específico para tablets pequeñas */
+@media (min-width: 768px) and (max-width: 991px) {
+  #bannerCarousel {
+    margin-bottom: 90px; /* Mayor espacio para pantallas más pequeñas */
   }
 }
