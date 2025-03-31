@@ -67,7 +67,7 @@ axios.get('/api/live')
             videoContainer.innerHTML = `
           <div class="col-md-12 col-12">
             <div class="video-content-left">
-              <img src="./assets/images/video-preview.jpg" alt="" width="100%" height="420" class="img-fluid" />
+              <img src="./assets/images/video-preview.webp" alt="" width="100%" height="420" class="img-fluid" />
               <a href="https://youtu.be/tKyLOk2ro3g" class="glightbox video"><i class="bi bi-play"></i></a>
             </div>
           </div>`;
